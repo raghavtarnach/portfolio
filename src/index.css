@@ -2,31 +2,51 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-  scroll-behavior: smooth;
-}
-
+/* Base */
 html {
   scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 body {
-  @apply bg-dark-950 text-gray-100 font-sans;
+  @apply bg-surface-950 text-zinc-300 font-sans;
 }
 
-/* Scrollbar styling */
+/* Custom scrollbar — neutral, not teal */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-dark-900;
+  @apply bg-surface-950;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-accent-500 rounded-full;
+  @apply bg-surface-600 rounded-full;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-accent-600;
+  @apply bg-surface-500;
+}
+
+/* Text selection */
+::selection {
+  @apply bg-accent-900 text-accent-400;
+}
+
+/* Focus styles (WCAG keyboard navigation) */
+*:focus-visible {
+  @apply outline-none ring-2 ring-accent-400 ring-offset-2 ring-offset-surface-950;
+}
+
+/* Utility: hide scrollbar but allow scroll */
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
 }

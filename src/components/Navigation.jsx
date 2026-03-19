@@ -1,8 +1,9 @@
-import { useState } from 'react'
-import { Menu, X } from 'lucide-react'
+import { useState, useEffect } from 'react'
+import { Menu, X, Linkedin, Github } from 'lucide-react'
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
 
   const navItems = [
     { name: 'About', href: '#about' },
@@ -12,35 +13,70 @@ export default function Navigation() {
     { name: 'Contact', href: '#contact' }
   ]
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   const handleNavClick = () => {
     setIsOpen(false)
   }
 
   return (
-    <nav className="fixed top-0 w-full bg-dark-950 bg-opacity-95 backdrop-blur-md z-50 border-b border-dark-700">
+    <nav
+      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+        isScrolled
+          ? 'bg-surface-950/90 backdrop-blur-xl border-b border-surface-700'
+          : 'bg-transparent border-b border-transparent'
+      }`}
+    >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <a href="#hero" className="text-2xl font-bold text-accent-500 hover:text-accent-600 transition-colors">
+          <a href="#hero" className="text-xl font-bold text-zinc-50 tracking-tight hover:text-accent-400 transition-colors duration-200">
             RT
           </a>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex gap-8">
+          <div className="hidden md:flex gap-8 items-center">
             {navItems.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
-                className="text-gray-300 hover:text-accent-500 transition-colors duration-300 font-medium"
+                className="text-sm font-medium text-zinc-400 hover:text-zinc-50 transition-colors duration-200"
               >
                 {item.name}
               </a>
             ))}
+
+            {/* Social Icons */}
+            <div className="flex gap-3 ml-2 pl-2 border-l border-surface-600">
+              <a
+                href="https://linkedin.com/in/raghavtarnach"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 text-zinc-500 hover:text-accent-400 transition-colors duration-200 rounded-md hover:bg-surface-800"
+              >
+                <Linkedin size={18} />
+              </a>
+              <a
+                href="https://github.com/raghavtarnach"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 text-zinc-500 hover:text-accent-400 transition-colors duration-200 rounded-md hover:bg-surface-800"
+              >
+                <Github size={18} />
+              </a>
+            </div>
           </div>
 
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden text-gray-300 hover:text-accent-500 transition-colors"
+            className="md:hidden text-zinc-400 hover:text-zinc-50 transition-colors"
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -48,17 +84,37 @@ export default function Navigation() {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden pb-4 space-y-2">
+          <div className="md:hidden pb-4 space-y-2 bg-surface-950/98 backdrop-blur-xl border-b border-surface-700 -mx-4 px-4 py-4">
             {navItems.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
                 onClick={handleNavClick}
-                className="block text-gray-300 hover:text-accent-500 transition-colors duration-300 py-2 px-4 rounded-lg hover:bg-dark-800"
+                className="block text-sm font-medium text-zinc-400 hover:text-zinc-50 transition-colors duration-200 py-2 px-4 rounded-lg hover:bg-surface-800"
               >
                 {item.name}
               </a>
             ))}
+
+            {/* Mobile Social Icons */}
+            <div className="flex gap-3 pt-2 border-t border-surface-700 mt-2">
+              <a
+                href="https://linkedin.com/in/raghavtarnach"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 text-zinc-500 hover:text-accent-400 transition-colors duration-200 rounded-md hover:bg-surface-800"
+              >
+                <Linkedin size={18} />
+              </a>
+              <a
+                href="https://github.com/raghavtarnach"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 text-zinc-500 hover:text-accent-400 transition-colors duration-200 rounded-md hover:bg-surface-800"
+              >
+                <Github size={18} />
+              </a>
+            </div>
           </div>
         )}
       </div>

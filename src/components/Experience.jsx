@@ -1,4 +1,9 @@
+import SectionLabel from './ui/SectionLabel'
+import { useScrollAnimation } from '../hooks/useScrollAnimation'
+
 export default function Experience() {
+  const [ref, isVisible] = useScrollAnimation()
+
   const experiences = [
     {
       title: 'Lead – DataOps Team',
@@ -54,29 +59,54 @@ export default function Experience() {
   ]
 
   return (
-    <section id="experience" className="py-20 px-4 sm:px-6 lg:px-8 bg-dark-900">
-      <div className="max-w-5xl mx-auto">
-        <h2 className="text-4xl sm:text-5xl font-bold text-white mb-12 text-center">Professional Experience</h2>
+    <section
+      ref={ref}
+      id="experience"
+      className={`py-24 px-4 sm:px-6 lg:px-8 bg-surface-900 transition-all duration-700 ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+      }`}
+    >
+      <div className="max-w-4xl mx-auto">
+        <SectionLabel number="03" title="Professional Experience" />
 
-        <div className="space-y-8">
+        <div className="relative md:pl-8 mt-12 space-y-8">
+          {/* Timeline line (desktop only) */}
+          <div className="hidden md:block absolute left-0 top-2 bottom-2 w-px bg-surface-700" />
+
           {experiences.map((exp, idx) => (
-            <div key={idx} className="border-l-4 border-accent-500 pl-6 py-2">
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-3">
-                <div>
-                  <h3 className="text-xl sm:text-2xl font-bold text-white">{exp.title}</h3>
-                  <p className="text-accent-500 font-semibold">{exp.company}</p>
-                </div>
-                <p className="text-gray-400 text-sm sm:text-base whitespace-nowrap">{exp.period}</p>
-              </div>
+            <div key={idx} className="relative mb-8 last:mb-0">
+              {/* Timeline dot (desktop only) */}
+              <div className="hidden md:block absolute -left-[37px] top-6 w-2.5 h-2.5 rounded-full bg-accent-500 ring-[3px] ring-surface-950" />
 
-              <ul className="space-y-2 text-gray-300">
-                {exp.highlights.map((highlight, hIdx) => (
-                  <li key={hIdx} className="flex gap-3">
-                    <span className="text-accent-500 font-bold mt-1">•</span>
-                    <span>{highlight}</span>
-                  </li>
-                ))}
-              </ul>
+              {/* Card */}
+              <div className="bg-surface-800 rounded-xl border border-surface-700 p-6 hover:border-surface-600 transition-colors duration-200">
+                {/* Header */}
+                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-4">
+                  <div>
+                    <h3 className="text-lg sm:text-xl font-bold text-zinc-50 leading-snug">
+                      {exp.title}
+                    </h3>
+                    <p className="text-sm font-medium text-accent-400 mt-0.5">
+                      {exp.company}
+                    </p>
+                  </div>
+                  <span className="self-start sm:self-auto bg-surface-700 text-zinc-500 text-xs font-medium px-3 py-1 rounded-full border border-surface-600 whitespace-nowrap">
+                    {exp.period}
+                  </span>
+                </div>
+
+                {/* Bullets */}
+                <ul className="space-y-2.5">
+                  {exp.highlights.map((highlight, hIdx) => (
+                    <li key={hIdx} className="flex gap-3 items-start">
+                      <span className="w-1 h-1 rounded-full bg-zinc-600 mt-2.5 flex-shrink-0" />
+                      <span className="text-sm text-zinc-300 leading-relaxed">
+                        {highlight}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           ))}
         </div>
