@@ -23,7 +23,7 @@ export default function About() {
             </p>
 
             <p>
-              At BuzzClan, working with Lantern Healthcare, I've designed and implemented metadata-driven ETL frameworks that process millions of healthcare records, reduce client onboarding time by <span className="text-zinc-50 font-semibold">40%</span>, and improve data quality across enterprise systems.
+              At BuzzClan, working with Healthcare client, I've designed and implemented metadata-driven ETL frameworks that process millions of healthcare records, reduce client onboarding time by <span className="text-zinc-50 font-semibold">40%</span>, and improve data quality across enterprise systems.
             </p>
 
             <p>
