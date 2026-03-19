@@ -7,7 +7,7 @@ export default function Experience() {
   const experiences = [
     {
       title: 'Lead – DataOps Team',
-      company: 'BuzzClan (Client: Lantern Healthcare)',
+      company: 'BuzzClan (Client: Confidential)',
       period: 'Feb 2025 – Present',
       highlights: [
         'Lead end-to-end client onboarding and production operations for healthcare data pipelines, supporting multiple enterprise clients and eligibility datasets.',
@@ -18,7 +18,7 @@ export default function Experience() {
     },
     {
       title: 'Targeted Marketing Outreach (TMO) – Zion Team',
-      company: 'BuzzClan (Client: Lantern Healthcare)',
+      company: 'BuzzClan (Client: Confidential)',
       period: 'Jan 2024 – Feb 2025',
       highlights: [
         'Built scalable PySpark pipelines in Databricks, integrated with ADF and SQL Server, to process and deliver marketing and outreach datasets.',
@@ -28,7 +28,7 @@ export default function Experience() {
     },
     {
       title: 'Snowflake Architecture Team',
-      company: 'BuzzClan (Client: Lantern Healthcare)',
+      company: 'BuzzClan (Client: Confidential)',
       period: 'Jan 2023 – Jan 2024',
       highlights: [
         'Contributed to the design and implementation of a Snowflake-based analytics platform for enterprise healthcare reporting.',
@@ -38,7 +38,7 @@ export default function Experience() {
     },
     {
       title: 'Data Engineering Framework Team',
-      company: 'BuzzClan (Client: Lantern Healthcare)',
+      company: 'BuzzClan (Client: Confidential)',
       period: 'Mar 2022 – Jan 2023',
       highlights: [
         'Designed and implemented automated ADF ingestion pipelines for data validation, transformation, and loading of healthcare datasets.',
@@ -48,7 +48,7 @@ export default function Experience() {
     },
     {
       title: 'DataOps Team',
-      company: 'BuzzClan (Client: Lantern Healthcare)',
+      company: 'BuzzClan (Client: Confidential)',
       period: 'Mar 2021 – Mar 2022',
       highlights: [
         'Onboarded healthcare clients by building eligibility file ingestion pipelines using ADF and SQL Server.',
